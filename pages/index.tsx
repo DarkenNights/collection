@@ -92,6 +92,7 @@ export const getStaticProps: GetStaticProps = async () => {
             games,
             books
         },
+        revalidate: 10
     }
 }
 

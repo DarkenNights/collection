@@ -61,6 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             vinyls,
         },
+        revalidate: 10
     }
 }
 

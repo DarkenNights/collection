@@ -40,7 +40,7 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
                             command: fields.command
                         })
                         await vinyl.save()
-                        await saveFile(files.image, '/public'+vinyl.image);
+                        await saveFile(files.image, 'public'+vinyl.image);
                         break
                     case 'game' :
                         const game = new GameModel({
@@ -50,7 +50,7 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
                             command: fields.command
                         })
                         await game.save()
-                        await saveFile(files.image, '/public'+game.image);
+                        await saveFile(files.image, 'public'+game.image);
                         break
                     case 'book' :
                         const book = new BookModel({
@@ -60,7 +60,7 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
                             command: fields.command
                         })
                         await book.save()
-                        await saveFile(files.image, '/public'+book.image);
+                        await saveFile(files.image, 'public'+book.image);
                         break
                 }
                 return res.status(201).send("");

@@ -14,7 +14,7 @@ const bookSchema = new mongoose.Schema<BookDocument>(
         description: {
             type: String,
         },
-        precommand: {
+        command: {
             type: Boolean,
         },
     },

@@ -14,7 +14,7 @@ const gameSchema = new mongoose.Schema<GameDocument>(
         description: {
             type: String,
         },
-        precommand: {
+        command: {
             type: Boolean,
         },
     },

@@ -1,10 +1,9 @@
 import { BookDocument, GameDocument, VinylDocument } from './models'
 
 export type IndexPage = {
-    vinyl: VinylDocument
-    game: GameDocument
-    book: BookDocument
-    book2: BookDocument
+    vinyls: VinylDocument[]
+    games: GameDocument[]
+    books: BookDocument[]
 }
 
 export type VinylesPage = {

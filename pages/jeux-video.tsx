@@ -22,7 +22,7 @@ const JeuxVideo: NextPage<JeuxVideoPage> = ({ games }) => {
             return title.includes(search)
         })
         setGamesDisplay(filteredGames)
-    }, [text])
+    }, [text, games])
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value)

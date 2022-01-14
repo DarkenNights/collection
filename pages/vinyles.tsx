@@ -22,7 +22,7 @@ const Vinyles: NextPage<VinylesPage> = ({ vinyls }) => {
             return title.includes(search)
         })
         setVinylsDisplay(filteredVinyls)
-    }, [text])
+    }, [text, vinyls])
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value)

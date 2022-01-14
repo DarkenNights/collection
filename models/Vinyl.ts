@@ -14,7 +14,7 @@ const vinylSchema = new mongoose.Schema<VinylDocument>(
         description: {
             type: String,
         },
-        precommand: {
+        command: {
             type: Boolean,
         },
     },

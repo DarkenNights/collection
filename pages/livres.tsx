@@ -22,7 +22,7 @@ const Livres: NextPage<LivresPage> = ({ books }) => {
             return title.includes(search)
         })
         setBooksDisplay(filteredBooks)
-    }, [text])
+    }, [text, books])
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         setText(event.target.value)

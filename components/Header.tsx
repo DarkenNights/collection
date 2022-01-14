@@ -13,7 +13,7 @@ const Header: NextPage = () => {
                     <div className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                         <Link href="/" passHref>
                             <a className="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                                <Image src={'/logo-white.svg'} layout="fixed" width={250} height={50} />
+                                <Image src={'/logo-white.svg'} layout="fixed" width={250} height={50} alt="Logo Pop Collection" />
                             </a>
                         </Link>
                         <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">

@@ -6,8 +6,23 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import * as fs from "fs";
 import formidable from "formidable";
 import slug from "slug";
+// @ts-ignore
+import Cors from "cors"
+import initMiddleware from '../../middlewares/init-middleware'
+
+// Initialize the cors middleware
+const cors = initMiddleware(
+    // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
+    Cors({
+        // Only allow requests with GET, POST and OPTIONS
+        methods: ['GET', 'POST', 'OPTIONS'],
+    })
+)
 
 const add = async (req: NextApiRequest, res: NextApiResponse) => {
+    // Run cors
+    await cors(req, res)
+
     if (req.method === 'POST') {
         const form = new formidable.IncomingForm();
         form.parse(req, async function (err, fields, files) {

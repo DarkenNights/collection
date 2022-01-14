@@ -1,0 +1,47 @@
+@import '../abstracts/variables';
+
+.container {
+    display: flex;
+    max-width: 750px;
+    width: 750px;
+    border: 2px solid $primary-color;
+    border-radius: 0.5rem;
+    position: relative;
+    overflow: hidden;
+    background-color: $primary-color;
+    input,
+    button {
+        border: none;
+        height: 2.5rem;
+        &::placeholder {
+            color: lighten($color: $primary-color, $amount: 25%)
+        }
+    }
+    input {
+        background-color: #fff;
+        padding-left: 1rem;
+        width: calc(100% - 2.5rem);
+        border-right: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        margin:0;
+        &:focus {
+            outline: $primary-color;
+        }
+    }
+    button {
+        position: absolute;
+        right: 0;
+        top: -1px;
+        height: calc(100% + 2px);
+        width: 2.5rem;
+        border-radius: .5rem 0 0 .5rem;
+        background-color: $primary-color;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ffffff;
+        padding: .5rem;
+        z-index: 30;
+    }
+}

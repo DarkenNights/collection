@@ -1,0 +1,19 @@
+body, html {
+    height : 100% !important;
+}
+
+body {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+main > .container {
+    padding: 60px 15px 0;
+}
+
+header ul li {
+    cursor: pointer;
+    &:hover {
+        text-decoration: underline;
+    }
+}

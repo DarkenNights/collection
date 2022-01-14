@@ -1,0 +1,67 @@
+/// Couleur Primaire
+/// @type Color
+$primary-color: #000000;
+
+/// Couleur des input disabled
+/// @type Color
+$disabled-color: #959495;
+
+/// Breakpoints map
+/// @prop {String} keys - Les clés sont les identifiants mappés à une longueur donnée
+/// @prop {Map} values - Les valeurs sont les breakpoints exprimés en pixels
+$breakpoints: (
+    'xs': (
+        min-width: 375px,
+    ),
+    'sm': (
+        min-width: 576px,
+    ),
+    'md': (
+        min-width: 768px,
+    ),
+    'lg': (
+        min-width: 992px,
+    ),
+    'xl': (
+        min-width: 1200px,
+    ),
+    'xxl': (
+        min-width: 1400px,
+    ),
+    'xxxl': (
+        min-width: 1600px,
+    ),
+    'xxxxl': (
+        min-width: 1920px,
+    ),
+) !default;
+
+$max-width-breakpoints: (
+    'xs': (
+        max-width: 375px,
+    ),
+    'sm': (
+        max-width: 576px,
+    ),
+    'md': (
+        max-width: 768px,
+    ),
+    'lg': (
+        max-width: 992px,
+    ),
+    'xl': (
+        max-width: 1200px,
+    ),
+    'xxl': (
+        max-width: 1400px,
+    ),
+    'xxxl': (
+        max-width: 1600px,
+    ),
+    'xxxxl': (
+        max-width: 1920px,
+    ),
+) !default;
+
+
+$sizes: 'xs', 'sm', 'md', 'lg', 'xl', 'xxl', 'xxxl', 'xxxxl';

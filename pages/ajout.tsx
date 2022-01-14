@@ -3,7 +3,7 @@ import {ChangeEvent, useState} from "react";
 import {AddSaleForm} from "../types/api";
 import axios from "axios";
 
-const Add: NextPage<> = () => {
+const Add: NextPage = () => {
     const [fields, setFields] = useState<AddSaleForm>({
         type: 'vinyl',
         title: '',
@@ -45,7 +45,7 @@ const Add: NextPage<> = () => {
         <>
             <div className="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
                 <div className="col-md-5 p-lg-5 mx-auto my-5">
-                    <h1 className="display-4 fw-normal">Ajout d'un achat</h1>
+                    <h1 className="display-4 fw-normal">Ajout d&apos;un achat</h1>
                 </div>
             </div>
             <div className="container p-4 bg-light">
@@ -78,7 +78,7 @@ const Add: NextPage<> = () => {
                                 <option value="false">Non</option>
                             </select>
                         </div>
-                        <button className="col-12 btn btn-dark" type="submit">Ajouter l'achat</button>
+                        <button className="col-12 btn btn-dark" type="submit">Ajouter l&apos;achat</button>
                     </form>
                 </div>
             </div>

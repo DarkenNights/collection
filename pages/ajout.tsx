@@ -2,15 +2,17 @@ import type { NextPage } from 'next'
 import {ChangeEvent, useState} from "react";
 import {AddSaleForm} from "../types/api";
 import axios from "axios";
+import AWS from '../utils/AWS'
 
 const Add: NextPage = () => {
     const [fields, setFields] = useState<AddSaleForm>({
-        type: 'vinyl',
+        type: 'vinyls',
         title: '',
         description: '',
-        command: 'false'
+        command: 'false',
+        image: ''
     })
-    const [image, setImage] = useState<string | Blob>('');
+    const [image, setImage] = useState<File>();
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
         setFields({
@@ -25,20 +27,24 @@ const Add: NextPage = () => {
         }
     }
 
-    const handleSubmit = (event: ChangeEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
-        const data = new FormData();
-        data.append('image', image)
-        data.append('title', fields.title)
-        data.append('type', fields.type)
-        if(fields.description) data.append('description', fields.description)
-        data.append('command', fields.command)
+        const imageURL = await AWS.uploadFile(image, fields.type)
+        setFields({...fields, image: imageURL})
+        const data = {
+            type: fields.type,
+            title: fields.title,
+            description: fields.description,
+            command: fields.command,
+            image: fields.image
+        };
         const axiosConfig = {
             headers: {
-                'Content-Type': 'multipart/form-data',
+                'Content-Type': 'application/json',
             },
         }
-        return axios.post(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/add', data, axiosConfig)
+        console.log(data)
+        await axios.post(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/add', data, axiosConfig)
     }
 
     return (
@@ -54,9 +60,9 @@ const Add: NextPage = () => {
                         <div className="mb-3">
                             <label htmlFor="command" className="form-label">Quel type de produit ?</label>
                             <select className="form-select" aria-label="Default select example" name="type" onChange={handleChange}>
-                                <option value="vinyl">Vinyles</option>
-                                <option value="game">Jeux video</option>
-                                <option value="book">Livres</option>
+                                <option value="vinyls">Vinyles</option>
+                                <option value="games">Jeux video</option>
+                                <option value="books">Livres</option>
                             </select>
                         </div>
                         <div className="mb-3">

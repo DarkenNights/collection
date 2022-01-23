@@ -3,6 +3,9 @@ namespace NodeJS {
         DATABASE_URL: string
         NEXT_PUBLIC_VERCEL_URL: string
         NEXT_PUBLIC_VERCEL_ENV: NodeEnvironment
+        AWS_ACCESS_KEY: string
+        AWS_SECRET_KEY: string
+        AWS_BUCKET_IMAGE: string
     }
 
     enum NodeEnvironment {

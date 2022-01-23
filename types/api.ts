@@ -3,4 +3,5 @@ export type AddSaleForm = {
     title: string
     description?: string
     command: string
+    image: string
 }

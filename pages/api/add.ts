@@ -28,7 +28,6 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
                         command: req.body.command,
                     })
                     await game.save()
-                    // await saveFile(files.image, process.cwd()+'/public'+game.image);
                     break
                 case 'books':
                     const book = new BookModel({
@@ -39,7 +38,6 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
                         command: req.body.command,
                     })
                     await book.save()
-                    // await saveFile(files.image, process.cwd()+'/public'+book.image);
                     break
             }
             return res.status(201).send('')

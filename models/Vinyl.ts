@@ -11,6 +11,10 @@ const vinylSchema = new mongoose.Schema<VinylDocument>(
             type: String,
             required: true,
         },
+        blur: {
+            type: String,
+            required: true,
+        },
         description: {
             type: String,
         },

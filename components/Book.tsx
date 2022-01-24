@@ -6,7 +6,7 @@ const Book: NextPage<BookComponent> = ({ book }) => {
     return (
         <div className="col">
             <div className="card shadow-sm">
-                <Image src={book.image} width={500} height={500} objectFit="contain" alt={book.title} />
+                <Image src={book.image} width={500} height={500} objectFit="contain" alt={book.title} placeholder="blur" blurDataURL={book.blur} />
                 <div className="card-body text-center">
                     <h2 className="fs-5 mb-0">{book.title}</h2>
                     {book.description && (

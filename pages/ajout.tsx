@@ -3,20 +3,21 @@ import { ChangeEvent, useState } from 'react'
 import { AddSaleForm } from '../types/api'
 import AwsService from '../services/AwsService'
 import axios from 'axios'
+import imageCompression from 'browser-image-compression'
 
 const Add: NextPage = () => {
-    const [infos, setInfos] = useState<AddSaleForm>({
+    const [fields, setFields] = useState<AddSaleForm>({
         type: 'vinyls',
         title: '',
         description: '',
         command: 'false',
-        image: '',
+        password: '',
     })
     const [image, setImage] = useState<File | undefined>()
 
     const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        setInfos({
-            ...infos,
+        setFields({
+            ...fields,
             [event.target.name]: event.target.value,
         })
     }
@@ -29,16 +30,43 @@ const Add: NextPage = () => {
 
     const handleSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
         event.preventDefault()
-        if (image) {
-            const imageUrl = await AwsService.uploadFile(image, infos.type)
-            const data = {
-                type: infos.type,
-                title: infos.title,
-                description: infos.description,
-                command: infos.command,
-                image: imageUrl,
-            }
-            await axios.post(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/add', data, { headers: { 'Content-Type': 'application/json' } })
+        if (image && fields.password === process.env.NEXT_PUBLIC_PASSWORD) {
+            const imageUrl = await AwsService.uploadFile(image, fields.type)
+            const fileReader = new FileReader()
+            fileReader.addEventListener('load', function () {
+                const img = new Image()
+                img.onload = async function () {
+                    console.log(img.width)
+                    const options = {
+                        maxSizeMB: 1,
+                        maxWidthOrHeight: img.width / 10,
+                        useWebWorker: true,
+                    }
+                    const compressedFile = await imageCompression(image, options)
+                    const blur = await imageCompression.getDataUrlFromFile(compressedFile)
+                    const data = {
+                        type: fields.type,
+                        title: fields.title,
+                        description: fields.description,
+                        command: fields.command,
+                        image: imageUrl,
+                        blur,
+                    }
+                    await axios.post(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/add', data, { headers: { 'Content-Type': 'application/json' } })
+                    setFields({
+                        ...fields,
+                        title: '',
+                        description: '',
+                        command: 'false',
+                    })
+                }
+                if (fileReader.result) {
+                    if (typeof fileReader.result === 'string') {
+                        img.src = fileReader.result
+                    }
+                }
+            })
+            fileReader.readAsDataURL(image)
         }
     }
 
@@ -88,6 +116,12 @@ const Add: NextPage = () => {
                                 <option value="true">Oui</option>
                                 <option value="false">Non</option>
                             </select>
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="password" className="form-label">
+                                Mot de passe
+                            </label>
+                            <input type="text" className="form-control" id="password" name="password" onChange={handleChange} />
                         </div>
                         <button className="col-12 btn btn-dark" type="submit">
                             Ajouter l&apos;achat

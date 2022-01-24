@@ -17,38 +17,38 @@ const Header: NextPage = () => {
                             </a>
                         </Link>
                         <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                            <Link href="/" passHref>
-                                <li>
+                            <li>
+                                <Link href="/" passHref>
                                     <a className="nav-link text-white d-flex align-items-center">
                                         <IoHome />
                                         <span className="ms-1">Accueil</span>
                                     </a>
-                                </li>
-                            </Link>
-                            <Link href="/vinyles" passHref>
-                                <li>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/vinyles" passHref>
                                     <a className="nav-link text-white d-flex align-items-center">
                                         <BsVinylFill />
                                         <span className="ms-1">Vinyle</span>
                                     </a>
-                                </li>
-                            </Link>
-                            <Link href="/jeux-video" passHref>
-                                <li>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/jeux-video" passHref>
                                     <a className="nav-link text-white d-flex align-items-center">
                                         <IoGameController />
                                         <span className="ms-1">Jeux vidéo</span>
                                     </a>
-                                </li>
-                            </Link>
-                            <Link href="/livres" passHref>
-                                <li>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/livres" passHref>
                                     <a className="nav-link text-white d-flex align-items-center">
                                         <ImBook />
                                         <span className="ms-1">Livres/BDs</span>
                                     </a>
-                                </li>
-                            </Link>
+                                </Link>
+                            </li>
                         </ul>
                     </div>
                 </div>

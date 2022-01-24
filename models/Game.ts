@@ -11,6 +11,10 @@ const gameSchema = new mongoose.Schema<GameDocument>(
             type: String,
             required: true,
         },
+        blur: {
+            type: String,
+            required: true,
+        },
         description: {
             type: String,
         },

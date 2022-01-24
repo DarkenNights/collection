@@ -6,9 +6,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 
 const add = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        // const form = new formidable.IncomingForm();
-        // form.parse(req, async function (err, fields, files) {
-        console.log(req.body)
         try {
             await dbConnect()
             switch (req.body.type) {
@@ -16,6 +13,7 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
                     const vinyl = new VinylModel({
                         title: req.body.title,
                         image: req.body.image,
+                        blur: req.body.blur,
                         description: req.body.description,
                         command: req.body.command,
                     })
@@ -25,6 +23,7 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
                     const game = new GameModel({
                         title: req.body.title,
                         image: req.body.image,
+                        blur: req.body.blur,
                         description: req.body.description,
                         command: req.body.command,
                     })
@@ -35,6 +34,7 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
                     const book = new BookModel({
                         title: req.body.title,
                         image: req.body.image,
+                        blur: req.body.blur,
                         description: req.body.description,
                         command: req.body.command,
                     })
@@ -47,16 +47,9 @@ const add = async (req: NextApiRequest, res: NextApiResponse) => {
             console.log(err.message)
             return res.status(500).send(err)
         }
-        // });
     } else {
         res.status(405).send('Method not allowed')
     }
 }
 
 export default add
-
-// export const config = {
-//     api: {
-//         bodyParser: false, // Disallow body parsing, consume as stream
-//     },
-// };

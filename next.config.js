@@ -6,6 +6,6 @@ module.exports = {
         includePaths: [path.join(__dirname, 'styles')],
     },
     images: {
-        domains: ['amazonaws.com'],
+        domains: ['popuniversecollection.s3.eu-west-3.amazonaws.com'],
     },
 }

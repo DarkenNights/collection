@@ -51,7 +51,7 @@ const JeuxVideo: NextPage<JeuxVideoPage> = ({ games }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     await dbConnect()
-    const gamesResult = await GameModel.find({})
+    const gamesResult = await GameModel.find({}).sort('title')
     const games: GameDocument[] = gamesResult.map((game: GameDocument) => {
         return JSON.parse(JSON.stringify(game))
     })
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             games,
         },
-        revalidate: 10
+        revalidate: 10,
     }
 }
 

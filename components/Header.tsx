@@ -18,18 +18,10 @@ const Header: NextPage = () => {
                         </Link>
                         <ul className="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                             <li>
-                                <Link href="/" passHref>
-                                    <a className="nav-link text-white d-flex align-items-center">
-                                        <IoHome />
-                                        <span className="ms-1">Accueil</span>
-                                    </a>
-                                </Link>
-                            </li>
-                            <li>
                                 <Link href="/vinyles" passHref>
                                     <a className="nav-link text-white d-flex align-items-center">
                                         <BsVinylFill />
-                                        <span className="ms-1">Vinyle</span>
+                                        <span className="ms-1">Vinyles</span>
                                     </a>
                                 </Link>
                             </li>

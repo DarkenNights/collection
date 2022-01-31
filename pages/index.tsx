@@ -8,10 +8,10 @@ import Book from '../components/Book'
 import { GetStaticProps } from 'next'
 import { IndexPage } from '../types/pages'
 import { BookDocument, GameDocument, VinylDocument } from '../types/models'
-import dbConnect from "../utils/dbConnect";
-const GameModel = require("../models/Game");
-const BookModel = require("../models/Book");
-const VinylModel = require("../models/Vinyl");
+import dbConnect from '../utils/dbConnect'
+const GameModel = require('../models/Game')
+const BookModel = require('../models/Book')
+const VinylModel = require('../models/Vinyl')
 
 const Index: NextPage<IndexPage> = ({ vinyls, games, books }) => {
     return (
@@ -71,17 +71,17 @@ export const getStaticProps: GetStaticProps = async () => {
     const minusMonth = 1
     pastDate.setMonth(pastDate.getMonth() - minusMonth)
 
-    const gamesResult = await GameModel.find({$or: [{command: true}, {updated_at: { $gte: pastDate }}]})
+    const gamesResult = await GameModel.find({ $or: [{ command: true }, { updated_at: { $gte: pastDate } }] }).sort('-updated_at')
     const games: GameDocument[] = gamesResult.map((game: GameDocument) => {
         return JSON.parse(JSON.stringify(game))
     })
 
-    const booksResult = await BookModel.find({$or: [{command: true}, {updated_at: { $gte: pastDate }}]})
+    const booksResult = await BookModel.find({ $or: [{ command: true }, { updated_at: { $gte: pastDate } }] }).sort('-updated_at')
     const books: BookDocument[] = booksResult.map((book: BookDocument) => {
         return JSON.parse(JSON.stringify(book))
     })
 
-    const vinylsResult = await VinylModel.find({$or: [{command: true}, {updated_at: { $gte: pastDate }}]})
+    const vinylsResult = await VinylModel.find({ $or: [{ command: true }, { updated_at: { $gte: pastDate } }] }).sort('-updated_at')
     const vinyls: VinylDocument[] = vinylsResult.map((vinyl: VinylDocument) => {
         return JSON.parse(JSON.stringify(vinyl))
     })
@@ -90,9 +90,9 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             vinyls,
             games,
-            books
+            books,
         },
-        revalidate: 10
+        revalidate: 10,
     }
 }
 

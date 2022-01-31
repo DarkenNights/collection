@@ -53,16 +53,10 @@ const Add: NextPage = () => {
                         blur,
                     }
                     await axios.post(process.env.NEXT_PUBLIC_VERCEL_URL + '/api/add', data, { headers: { 'Content-Type': 'application/json' } })
-                    setFields({
-                        ...fields,
-                        title: '',
-                        description: '',
-                        command: 'false',
-                    })
-                }
-                if (fileReader.result) {
-                    if (typeof fileReader.result === 'string') {
-                        img.src = fileReader.result
+                    if (fileReader.result) {
+                        if (typeof fileReader.result === 'string') {
+                            img.src = fileReader.result
+                        }
                     }
                 }
             })
@@ -113,8 +107,8 @@ const Add: NextPage = () => {
                                 Est-ce une commande ?
                             </label>
                             <select className="form-select" aria-label="Default select example" name="command">
-                                <option value="true">Oui</option>
                                 <option value="false">Non</option>
+                                <option value="true">Oui</option>
                             </select>
                         </div>
                         <div className="mb-3">

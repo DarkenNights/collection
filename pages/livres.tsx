@@ -52,7 +52,7 @@ const Livres: NextPage<LivresPage> = ({ books }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     await dbConnect()
-    const booksResult = await BookModel.find({})
+    const booksResult = await BookModel.find({}).sort('title')
     const books: BookDocument[] = booksResult.map((book: BookDocument) => {
         return JSON.parse(JSON.stringify(book))
     })
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             books,
         },
-        revalidate: 10
+        revalidate: 10,
     }
 }
 

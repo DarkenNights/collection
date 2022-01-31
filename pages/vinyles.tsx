@@ -52,7 +52,7 @@ const Vinyles: NextPage<VinylesPage> = ({ vinyls }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
     await dbConnect()
-    const vinylsResult = await VinylModel.find({})
+    const vinylsResult = await VinylModel.find({}).sort('title')
     const vinyls: VinylDocument[] = vinylsResult.map((vinyl: VinylDocument) => {
         return JSON.parse(JSON.stringify(vinyl))
     })
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
         props: {
             vinyls,
         },
-        revalidate: 10
+        revalidate: 10,
     }
 }
 
